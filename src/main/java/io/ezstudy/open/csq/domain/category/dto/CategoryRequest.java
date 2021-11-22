@@ -13,8 +13,8 @@ public class CategoryRequest extends BaseTimeDto {
   }
 
   @Builder
-  public CategoryRequest(String createdAt, String updatedAt, String name) {
-    super(createdAt, updatedAt);
+  public CategoryRequest(String createdAt, String updatedAt, String deletedAt, String name) {
+    super(createdAt, updatedAt, deletedAt);
     this.name = name;
   }
 
