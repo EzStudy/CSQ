@@ -7,6 +7,7 @@ import io.ezstudy.open.csq.domain.category.domain.Category;
 import io.ezstudy.open.csq.domain.category.dto.CategoryRequest;
 import io.ezstudy.open.csq.domain.category.dto.CategoryResponse;
 import io.ezstudy.open.csq.domain.category.exception.CategoryInUseException;
+import io.ezstudy.open.csq.domain.quiz.application.QuizService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ public class CategoryService {
 
   private final CategoryRepository categoryRepository;
   private final QuizService quizService;
-
 
   public void create(CategoryRequest categoryRequest) {
     Category category = CategoryRequestMapper.INSTANCE.toEntity(categoryRequest);
@@ -34,9 +34,16 @@ public class CategoryService {
     return CategoryResponseMapper.INSTANCE.toDtoList(categoryRepository.findAll());
   }
 
+  public void update(CategoryRequest categoryRequest) {
+    Category category = categoryRepository.findById(categoryRequest.getId())
+        .orElseThrow(NoSuchElementException::new);
+
+    CategoryRequestMapper.INSTANCE.updateFromDto(categoryRequest, category);
+  }
+
   public void delete(String id) {
     // category 를 사용중인 quiz 가 있는지 체크
-    if (quizService.findByCategoryId(id)) {
+    if (null != quizService.findByCategoryId(id)) {
       throw new CategoryInUseException("This Category is being used for quiz");
     }
 

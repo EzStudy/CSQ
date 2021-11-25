@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public class CategoryRequest extends BaseTimeDto {
 
+  private String id;
+
   private String name;
 
   protected CategoryRequest() {
@@ -21,6 +23,7 @@ public class CategoryRequest extends BaseTimeDto {
   @Override
   public String toString() {
     return "CategoryRequest{" +
+        "id='" + id + '\'' +
         "name='" + name + '\'' +
         '}';
   }

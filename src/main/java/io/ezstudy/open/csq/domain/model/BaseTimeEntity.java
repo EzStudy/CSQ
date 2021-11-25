@@ -44,7 +44,7 @@ public abstract class BaseTimeEntity {
     this.updatedAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
   }
 
-  public void onPreDestroy() {
+  public void onDestroy() {
     this.deletedAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
   }
 }
