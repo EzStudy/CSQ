@@ -40,7 +40,7 @@ public class CategoryService {
 
     CategoryRequestMapper.INSTANCE.updateFromDto(categoryRequest, category);
   }
-
+/*
   public void delete(String id) {
     // category 를 사용중인 quiz 가 있는지 체크
     if (null != quizService.findByCategoryId(id)) {
@@ -50,5 +50,5 @@ public class CategoryService {
     // 없는 경우 삭제
     categoryRepository.deleteById(id);
   }
-
+*/
 }

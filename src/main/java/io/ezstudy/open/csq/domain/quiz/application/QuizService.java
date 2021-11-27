@@ -1,5 +1,7 @@
 package io.ezstudy.open.csq.domain.quiz.application;
 
+import io.ezstudy.open.csq.domain.quiz.dao.QuizRepository;
+import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class QuizService {
 
   private final QuizRepository quizRepository;
-
+/*
   public void create(QuizRequest quizRequest) {
     Quiz quiz = QuizRequestMapper.INSTANCE.toEntity(quizRequest);
     quizRepository.save(quiz);
@@ -47,5 +49,5 @@ public class QuizService {
     }
 
   }
-
+*/
 }

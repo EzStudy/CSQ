@@ -22,6 +22,7 @@ public class QuizApi {
 
   private final QuizService quizService;
 
+  /*
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public void create(@RequestBody QuizRequest quizRequest) {
@@ -61,4 +62,6 @@ public class QuizApi {
   public void delete(@PathVariable("id") String id) {
     quizService.delete(id);
   }
+  */
+
 }

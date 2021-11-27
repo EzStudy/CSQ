@@ -16,7 +16,7 @@ ext {
 }
 
 group = 'io.ezstudy.open'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 configurations {
     compileOnly {

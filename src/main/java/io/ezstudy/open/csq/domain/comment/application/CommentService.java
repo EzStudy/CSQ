@@ -1,5 +1,7 @@
 package io.ezstudy.open.csq.domain.comment.application;
 
+import io.ezstudy.open.csq.domain.comment.dao.CommentRepository;
+import io.ezstudy.open.csq.domain.comment.domain.Comment;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CommentService {
 
   private final CommentRepository commentRepository;
-
+/*
   public void create(CommentRequest commentRequest) {
     Comment comment = CommentRequestMapper.INSTANCE.toEntity(commentRequest);
     commentRepository.save(comment);
@@ -46,5 +48,5 @@ public class CommentService {
 
     comment.onDestroy();
   }
-
+*/
 }

@@ -1,5 +1,6 @@
 package io.ezstudy.open.csq.domain.comment.api;
 
+import io.ezstudy.open.csq.domain.quiz.application.QuizService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class CommentApi {
 
   private final QuizService commentService;
 
+  /*
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public void create(@RequestBody CommentRequest commentRequest) {
@@ -60,4 +62,5 @@ public class CommentApi {
   public void delete(@PathVariable("id") String id) {
     commentService.delete(id);
   }
+  */
 }

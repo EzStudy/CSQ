@@ -49,10 +49,12 @@ public class CategoryApi {
   public void update(@RequestBody CategoryRequest categoryRequest) {
     categoryService.update(categoryRequest);
   }
-
+/*
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public void delete(@PathVariable("id") String id) {
     categoryService.delete(id);
   }
+
+ */
 }

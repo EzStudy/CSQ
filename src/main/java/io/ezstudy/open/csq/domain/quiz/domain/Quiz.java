@@ -1,44 +1,59 @@
 package io.ezstudy.open.csq.domain.quiz.domain;
 
+import io.ezstudy.open.csq.domain.category.domain.Category;
+import io.ezstudy.open.csq.domain.model.BaseTimeEntity;
 import java.sql.Blob;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 @Getter
 @Entity
 @NoArgsConstructor
-public class Quiz {
+public class Quiz extends BaseTimeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private long user_id;
-    private long category_id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name ="uuid", strategy="uuid2")
+    @Column(columnDefinition = "VARCHAR(36)", insertable = false, updatable = false, nullable = false)
+    private String id;
+
+    private String user_id;
+
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category_id;
+
+    @NotNull
     private String title;
-    @Lob
-    private Blob content;
-    @Lob
-    private Blob multiple_choice;
-    @Lob
-    private Blob answer;
-    @Lob
-    private Blob explanation;
+    @NotNull
+    private byte[] content;
+    @NotNull
+    private byte[] multiple_choice;
+    @NotNull
+    private byte[] answer;
+    @NotNull
+    private byte[] explanation;
+    @NotNull
     private String type;
-    private long recommend;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
-    private LocalDateTime deleted_at;
+    private int recommend;
 
     @Builder
-    public Quiz(long id, long user_id, long category_id, String title, Blob content, Blob multiple_choice
-                , Blob answer, Blob explanation, String type, long recommend, LocalDateTime created_at, LocalDateTime updated_at, LocalDateTime deleted_at){
+    public Quiz(String id, String user_id, Category category_id, String title, byte[] content, byte[] multiple_choice
+                , byte[] answer, byte[] explanation, String type, int recommend, String createdAt, String updatedAt, String deletedAt){
+
+        super(createdAt, updatedAt, deletedAt);
         this.id = id;
         this.user_id = user_id;
         this.category_id = category_id;
@@ -49,8 +64,5 @@ public class Quiz {
         this.explanation = explanation;
         this.type = type;
         this.recommend = recommend;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.deleted_at = deleted_at;
     }
 }
