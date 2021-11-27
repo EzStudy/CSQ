@@ -1,54 +1,47 @@
 package io.ezstudy.open.csq.domain.category.application;
 
 import io.ezstudy.open.csq.domain.category.dao.CategoryRepository;
-import io.ezstudy.open.csq.domain.category.dao.CategoryRequestMapper;
-import io.ezstudy.open.csq.domain.category.dao.CategoryResponseMapper;
 import io.ezstudy.open.csq.domain.category.domain.Category;
 import io.ezstudy.open.csq.domain.category.dto.CategoryRequest;
 import io.ezstudy.open.csq.domain.category.dto.CategoryResponse;
 import io.ezstudy.open.csq.domain.category.exception.CategoryInUseException;
 import io.ezstudy.open.csq.domain.quiz.application.QuizService;
-import java.util.List;
-import java.util.NoSuchElementException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Service
 public class CategoryService {
 
-  private final CategoryRepository categoryRepository;
-  private final QuizService quizService;
+    @Autowired
+    CategoryRepository categoryRepository;
 
-  public void create(CategoryRequest categoryRequest) {
-    Category category = CategoryRequestMapper.INSTANCE.toEntity(categoryRequest);
-    categoryRepository.save(category);
-  }
+//    @Autowired
+//    QuizService quizService;
 
-  public CategoryResponse findById(String id) {
-    return CategoryResponseMapper.INSTANCE.toDto(
-        categoryRepository.findById(id).orElseThrow(NoSuchElementException::new));
-  }
-
-  public List<CategoryResponse> findAll() {
-    return CategoryResponseMapper.INSTANCE.toDtoList(categoryRepository.findAll());
-  }
-
-  public void update(CategoryRequest categoryRequest) {
-    Category category = categoryRepository.findById(categoryRequest.getId())
-        .orElseThrow(NoSuchElementException::new);
-
-    CategoryRequestMapper.INSTANCE.updateFromDto(categoryRequest, category);
-  }
-
-  public void delete(String id) {
-    // category 를 사용중인 quiz 가 있는지 체크
-    if (null != quizService.findByCategoryId(id)) {
-      throw new CategoryInUseException("This Category is being used for quiz");
+    @Transactional
+    public void create(Category category) {
+        categoryRepository.save(category);
     }
 
-    // 없는 경우 삭제
-    categoryRepository.deleteById(id);
-  }
+    public Category findById(String id) {
+        return categoryRepository.getById(id);
+    }
 
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
+    }
+
+    public void update(Category category) {
+        categoryRepository.save(category);
+    }
+
+//    public void delete(String id) {
+//        if(null != quizService.findByCategoryId(id)){
+//            throw new CategoryInUseException("This Category is being used for quiz");
+//        }
+//        categoryRepository.deleteById(id);
+//    }
 }
