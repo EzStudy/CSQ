@@ -3,8 +3,8 @@ package io.ezstudy.open.csq.domain.category.application;
 import io.ezstudy.open.csq.domain.category.dao.CategoryMapper;
 import io.ezstudy.open.csq.domain.category.dao.CategoryRepository;
 import io.ezstudy.open.csq.domain.category.domain.Category;
-import io.ezstudy.open.csq.domain.category.exception.CategoryInUseException;
 import io.ezstudy.open.csq.domain.quiz.application.QuizService;
+import io.ezstudy.open.csq.global.exception.UsedException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class CategoryService {
   public void delete(String id) {
     // category 를 사용중인 quiz 가 있는지 체크
     if (null != quizService.findAllByCategoryId(id)) {
-      throw new CategoryInUseException("Category is used in quiz yet");
+      throw new UsedException("Category is used in quiz yet");
     }
 
     // 없는 경우 삭제
