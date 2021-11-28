@@ -1,5 +1,6 @@
 package io.ezstudy.open.csq.domain.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.persistence.EntityListeners;
@@ -14,7 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseTimeEntity {
+public abstract class BaseTimeEntity implements Serializable {
 
   @CreatedDate
   protected String createdAt;

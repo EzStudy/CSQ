@@ -1,7 +1,9 @@
 package io.ezstudy.open.csq.domain.comment.application;
 
+import io.ezstudy.open.csq.domain.comment.dao.CommentMapper;
 import io.ezstudy.open.csq.domain.comment.dao.CommentRepository;
 import io.ezstudy.open.csq.domain.comment.domain.Comment;
+import io.ezstudy.open.csq.global.exception.AlreadyDeletedException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -12,41 +14,34 @@ import org.springframework.stereotype.Service;
 public class CommentService {
 
   private final CommentRepository commentRepository;
-/*
-  public void create(CommentRequest commentRequest) {
-    Comment comment = CommentRequestMapper.INSTANCE.toEntity(commentRequest);
-    commentRepository.save(comment);
+
+  public void create(Comment d) {
+    commentRepository.save(d);
   }
 
-  public CommentResponse findById(String id) {
-    return CommentResponseMapper.INSTANCE.toDto(
-        commentRepository.findById(id).orElseThrow(NoSuchElementException::new));
+  public Comment findById(String id) {
+    return commentRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
-  public List<CommentResponse> findByCategoryId(String categoryId) {
-    return CommentResponseMapper.INSTANCE.toDtoList(
-        commentRepository.findAllByCategoryId(categoryId).orElseThrow(NoSuchElementException::new));
+  public List<Comment> findAll() {
+    return commentRepository.findAll();
   }
 
-  public List<CommentResponse> findAll() {
-    return CommentResponseMapper.INSTANCE.toDtoList(commentRepository.findAll());
-  }
-
-  public void update(CommentRequest commentRequest) {
-    Comment comment = commentRepository.findById(commentRequest.getId())
+  public void update(Comment d) {
+    Comment comment = commentRepository.findById(d.getId())
         .orElseThrow(NoSuchElementException::new);
 
-    CommentRequestMapper.INSTANCE.updateFromDto(commentRequest, comment);
+    CommentMapper.INSTANCE.updateFromDto(comment, d);
   }
 
   public void delete(String id) {
     Comment comment = commentRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
-    if (1 == comment.getDeletedAt()) {
-      throw new AlreadyCommentDeletedException("");
+    if (null != comment.getDeletedAt()) {
+      throw new AlreadyDeletedException("Comment is already deleted");
     }
 
     comment.onDestroy();
   }
-*/
+
 }

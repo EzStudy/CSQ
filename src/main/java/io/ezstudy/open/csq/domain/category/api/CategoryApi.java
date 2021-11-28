@@ -1,8 +1,7 @@
 package io.ezstudy.open.csq.domain.category.api;
 
 import io.ezstudy.open.csq.domain.category.application.CategoryService;
-import io.ezstudy.open.csq.domain.category.dto.CategoryRequest;
-import io.ezstudy.open.csq.domain.category.dto.CategoryResponse;
+import io.ezstudy.open.csq.domain.category.domain.Category;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,35 +25,34 @@ public class CategoryApi {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void create(@RequestBody CategoryRequest categoryRequest) {
-    categoryService.create(categoryRequest);
+  public void create(@RequestBody Category category) {
+    categoryService.create(category);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<CategoryResponse> findById(@PathVariable("id") String id) {
-    CategoryResponse categoryResponse = categoryService.findById(id);
-    HttpStatus status = categoryResponse != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(categoryResponse, status);
+  public ResponseEntity<Category> findById(@PathVariable("id") String id) {
+    Category category = categoryService.findById(id);
+    HttpStatus status = category != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(category, status);
   }
 
   @GetMapping
-  public ResponseEntity<List<CategoryResponse>> findAll() {
-    List<CategoryResponse> categoryResponseList = categoryService.findAll();
-    HttpStatus status = categoryResponseList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(categoryResponseList, status);
+  public ResponseEntity<List<Category>> findAll() {
+    List<Category> categoryList = categoryService.findAll();
+    HttpStatus status = categoryList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(categoryList, status);
   }
 
   @PutMapping
   @ResponseStatus(HttpStatus.OK)
-  public void update(@RequestBody CategoryRequest categoryRequest) {
+  public void update(@RequestBody Category categoryRequest) {
     categoryService.update(categoryRequest);
   }
-/*
+
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public void delete(@PathVariable("id") String id) {
     categoryService.delete(id);
   }
 
- */
 }

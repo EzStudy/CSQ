@@ -1,6 +1,7 @@
 package io.ezstudy.open.csq.domain.quiz.api;
 
 import io.ezstudy.open.csq.domain.quiz.application.QuizService;
+import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,39 +23,38 @@ public class QuizApi {
 
   private final QuizService quizService;
 
-  /*
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void create(@RequestBody QuizRequest quizRequest) {
-    quizService.create(quizRequest);
+  public void create(@RequestBody Quiz d) {
+    quizService.create(d);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<QuizResponse> findById(@PathVariable("id") String id) {
-    QuizResponse quizResponse = quizService.findById(id);
-    HttpStatus status = quizResponse != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(quizResponse, status);
+  public ResponseEntity<Quiz> findById(@PathVariable("id") String id) {
+    Quiz quiz = quizService.findById(id);
+    HttpStatus status = quiz != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(quiz, status);
   }
 
   @GetMapping("/categories/{categoryId}")
-  public ResponseEntity<List<QuizResponse>> findByCategoryId( // pagination 필요
-      @PathVariable("categoryId") String cateogoryId) {
-    List<QuizResponse> quizResponseList = quizService.findByCategoryId(cateogoryId);
-    HttpStatus status = quizResponseList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(quizResponse, status);
+  public ResponseEntity<List<Quiz>> findByCategoryId( // pagination 필요
+      @PathVariable("categoryId") String categoryId) {
+    List<Quiz> quizList = quizService.findAllByCategoryId(categoryId);
+    HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(quizList, status);
   }
 
   @GetMapping
-  public ResponseEntity<List<QuizResponse>> findAll() { // pagination 필요
-    List<QuizResponse> quizResponseList = quizService.findAll();
-    HttpStatus status = quizResponseList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(quizResponseList, status);
+  public ResponseEntity<List<Quiz>> findAll() { // pagination 필요
+    List<Quiz> quizList = quizService.findAll();
+    HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(quizList, status);
   }
 
   @PutMapping
   @ResponseStatus(HttpStatus.OK)
-  public void update(@RequestBody QuizRequest quizRequest) {
-    quizService.update(quizRequest);
+  public void update(@RequestBody Quiz d) {
+    quizService.update(d);
   }
 
   @DeleteMapping("/{id}")
@@ -62,6 +62,5 @@ public class QuizApi {
   public void delete(@PathVariable("id") String id) {
     quizService.delete(id);
   }
-  */
 
 }

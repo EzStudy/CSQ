@@ -1,5 +1,7 @@
 package io.ezstudy.open.csq.domain.comment.api;
 
+import io.ezstudy.open.csq.domain.comment.application.CommentService;
+import io.ezstudy.open.csq.domain.comment.domain.Comment;
 import io.ezstudy.open.csq.domain.quiz.application.QuizService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -20,41 +22,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CommentApi {
 
-  private final QuizService commentService;
+  private final CommentService commentService;
 
-  /*
+
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void create(@RequestBody CommentRequest commentRequest) {
-    commentService.create(commentRequest);
+  public void create(@RequestBody Comment comment) {
+    commentService.create(comment);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<CommentResponse> findById(@PathVariable("id") String id) {
-    CommentResponse commentResponse = commentService.findById(id);
-    HttpStatus status = commentResponse != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(commentResponse, status);
-  }
-
-  @GetMapping("/categories/{categoryId}")
-  public ResponseEntity<List<CommentResponse>> findByCategoryId( // pagination 필요
-      @PathVariable("categoryId") String cateogoryId) {
-    List<CommentResponse> commentResponseList = commentService.findByCategoryId(cateogoryId);
-    HttpStatus status = commentResponseList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(commentResponse, status);
+  public ResponseEntity<Comment> findById(@PathVariable("id") String id) {
+    Comment comment = commentService.findById(id);
+    HttpStatus status = comment != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(comment, status);
   }
 
   @GetMapping
-  public ResponseEntity<List<CommentResponse>> findAll() { // pagination 필요
-    List<CommentResponse> commentResponseList = commentService.findAll();
-    HttpStatus status = commentResponseList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(commentResponseList, status);
+  public ResponseEntity<List<Comment>> findAll() { // pagination 필요
+    List<Comment> commentList = commentService.findAll();
+    HttpStatus status = commentList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(commentList, status);
   }
 
   @PutMapping
   @ResponseStatus(HttpStatus.OK)
-  public void update(@RequestBody CommentRequest commentRequest) {
-    commentService.update(commentRequest);
+  public void update(@RequestBody Comment comment) {
+    commentService.update(comment);
   }
 
   @DeleteMapping("/{id}")
@@ -62,5 +56,5 @@ public class CommentApi {
   public void delete(@PathVariable("id") String id) {
     commentService.delete(id);
   }
-  */
+
 }
