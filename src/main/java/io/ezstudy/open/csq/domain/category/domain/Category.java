@@ -34,9 +34,9 @@ public class Category extends BaseTimeEntity {
   }
 
   @Builder
-  public Category(String createdDate, String modifiedDate, String deletedDate, String name) {
-    super(createdDate, modifiedDate, deletedDate);
-
+  public Category(String createdAt, String updatedAt, String deletedAt, String name, String id) {
+    super(createdAt, updatedAt, deletedAt);
+    this.id = id;
     this.name = name;
   }
 

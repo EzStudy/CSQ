@@ -24,25 +24,28 @@ public class Comment extends BaseTimeEntity {
   @Column(columnDefinition = "VARCHAR(36)", insertable = false, updatable = false, nullable = false)
   private String id;
 
-  private String user_id;
+  @Column(length=36)
+  private String userId;
 
   @ManyToOne
-  @JoinColumn(name = "quiz_id")
+  @JoinColumn(name = "quizId")
+  @Column(length=36, nullable = false)
   private Quiz quiz;
 
   private byte[] content;
 
-  private int is_correct;
+  @Column(length=11)
+  private int recommand;
 
   @Builder
-  public Comment(String id, String user_id, Quiz quiz, byte[] content, int is_correct,
-      String created_at, String updated_at, String deleted_at) {
-    super(created_at, updated_at, deleted_at);
+  public Comment(String id, String userId, Quiz quiz, byte[] content, int recommand,
+      String createdAt, String updatedAt, String deletedAt) {
+    super(createdAt, updatedAt, deletedAt);
 
     this.id = id;
-    this.user_id = user_id;
+    this.userId = userId;
     this.quiz = quiz;
     this.content = content;
-    this.is_correct = is_correct;
+    this.recommand = recommand;
   }
 }

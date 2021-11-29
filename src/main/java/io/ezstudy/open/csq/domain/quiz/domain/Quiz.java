@@ -25,20 +25,23 @@ public class Quiz extends BaseTimeEntity {
   @Column(columnDefinition = "VARCHAR(36)", insertable = false, updatable = false, nullable = false)
   private String id;
 
-  private String user_id;
+  @Column(length=36)
+  private String userId;
 
   @ManyToOne
-  @JoinColumn(name = "category_id")
-  private Category category_id;
+  @JoinColumn(name = "categoryId")
+  @Column(length=36, nullable = false)
+  private Category categoryId;
 
   @NotNull
+  @Column(length=100)
   private String title;
 
   @NotNull
   private byte[] content;
 
   @NotNull
-  private byte[] multiple_choice;
+  private byte[] multipleChoice;
 
   @NotNull
   private byte[] answer;
@@ -47,21 +50,23 @@ public class Quiz extends BaseTimeEntity {
   private byte[] explanation;
 
   @NotNull
+  @Column(length=20, nullable = false)
   private String type;
+  @Column(length=11)
   private int recommend;
 
   @Builder
-  public Quiz(String id, String user_id, Category category_id, String title, byte[] content,
-      byte[] multiple_choice, byte[] answer, byte[] explanation, String type, int recommend,
+  public Quiz(String id, String userId, Category categoryId, String title, byte[] content,
+      byte[] multipleChoice, byte[] answer, byte[] explanation, String type, int recommend,
       String createdAt, String updatedAt, String deletedAt) {
 
     super(createdAt, updatedAt, deletedAt);
     this.id = id;
-    this.user_id = user_id;
-    this.category_id = category_id;
+    this.userId = userId;
+    this.categoryId = categoryId;
     this.title = title;
     this.content = content;
-    this.multiple_choice = multiple_choice;
+    this.multipleChoice = multipleChoice;
     this.answer = answer;
     this.explanation = explanation;
     this.type = type;
