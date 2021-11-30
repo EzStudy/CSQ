@@ -23,6 +23,10 @@ public class QuizService {
     return quizRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
+  public List<Quiz> findByTitleContainingIgnoreCase(String title) {
+    return quizRepository.findByTitleContainingIgnoreCase(title);
+  }
+
   public List<Quiz> findAllByCategoryId(String categoryId) {
     return quizRepository.findAllByCategoryId(categoryId);
   }

@@ -23,6 +23,14 @@ public class CommentService {
     return commentRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 
+  public List<Comment> findByUserId(String userId) {
+    return commentRepository.findByUserId(userId);
+  }
+
+  public List<Comment> findByQuizId(String quizId) {
+    return commentRepository.findByQuizId(quizId);
+  }
+
   public List<Comment> findAll() {
     return commentRepository.findAll();
   }

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface QuizRepository extends JpaRepository<Quiz, String> {
 
   List<Quiz> findAllByCategoryId(String categoryId);
+
+  List<Quiz> findByTitleContainingIgnoreCase(String title);
 }

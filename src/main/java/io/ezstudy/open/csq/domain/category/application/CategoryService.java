@@ -29,6 +29,10 @@ public class CategoryService {
     return categoryRepository.findAll();
   }
 
+  public List<Category> findByNameContainingIgnoreCase(String name) {
+    return categoryRepository.findByNameContainingIgnoreCase(name);
+  }
+
   public void update(Category d) {
     Category category = categoryRepository.findById(d.getId())
         .orElseThrow(NoSuchElementException::new);
