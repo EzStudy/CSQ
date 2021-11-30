@@ -29,7 +29,7 @@ public class Comment extends BaseTimeEntity {
 
   @ManyToOne
   @JoinColumn(name = "quizId")
-  @Column(length=36, nullable = false)
+//  @Column(length=36, nullable = false)
   private Quiz quiz;
 
   private byte[] content;

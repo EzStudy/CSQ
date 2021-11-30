@@ -13,11 +13,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Getter
 @Entity
 @Table(name="category")
+@NoArgsConstructor
 public class Category extends BaseTimeEntity {
 
   @Id
@@ -29,9 +31,6 @@ public class Category extends BaseTimeEntity {
   @NotNull
   @Column(length = 50, nullable = false, unique = true)
   private String name;
-
-  protected Category() {
-  }
 
   @Builder
   public Category(String createdAt, String updatedAt, String deletedAt, String name, String id) {

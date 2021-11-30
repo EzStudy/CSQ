@@ -34,15 +34,15 @@ public class QuizTest {
         List<Category> categoryList = categoryRepository.findAll();
 
         Quiz quiz = Quiz.builder()
-                        .category_id(category)
+                        .categoryId(category)
                         .title("quiz_title")
                         .content("quiz_content".getBytes())
-                        .multiple_choice("multiple_choice".getBytes())
+                        .multipleChoice("multiple_choice".getBytes())
                         .answer("answer".getBytes())
                         .answer("quiz_explanation".getBytes())
                         .type("quiz_type")
                         .recommend(1)
-                        .user_id("user_id")
+                        .userId("user_id")
                         .build();
 
         Quiz savedQuiz = quizRepository.save(quiz);
@@ -51,7 +51,7 @@ public class QuizTest {
 
         for(Quiz q : quizList){
             Assertions.assertEquals(q.getTitle(),quiz.getTitle());
-            Assertions.assertEquals(q.getCategory_id().getName(), savedCategory.getName());
+            Assertions.assertEquals(q.getCategoryId().getName(), savedCategory.getName());
         }
     }
 }

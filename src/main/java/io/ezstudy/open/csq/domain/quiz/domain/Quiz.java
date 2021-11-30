@@ -30,7 +30,7 @@ public class Quiz extends BaseTimeEntity {
 
   @ManyToOne
   @JoinColumn(name = "categoryId")
-  @Column(length=36, nullable = false)
+//  @Column(length=36, nullable = false)
   private Category categoryId;
 
   @NotNull
