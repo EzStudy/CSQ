@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.6'
+    id 'org.springframework.boot' version '2.4.12'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -53,6 +53,7 @@ dependencies {
     // db
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2:1.4.197'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
     // mapper
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
