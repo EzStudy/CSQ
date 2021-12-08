@@ -1,14 +1,10 @@
 package io.ezstudy.open.csq.domain.category.domain;
 
 import io.ezstudy.open.csq.domain.model.BaseTimeEntity;
-import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import lombok.Builder;
@@ -18,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Getter
 @Entity
-@Table(name="category")
+@Table(name = "category")
 @NoArgsConstructor
 public class Category extends BaseTimeEntity {
 

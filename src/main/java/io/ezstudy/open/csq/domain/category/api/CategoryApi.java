@@ -43,6 +43,14 @@ public class CategoryApi {
     return new ResponseEntity<>(categoryList, status);
   }
 
+  @GetMapping("/name/{name}")
+  public ResponseEntity<List<Category>> findByNameContainingIgnoreCase(
+      @PathVariable("name") String name) {
+    List<Category> categoryList = categoryService.findByNameContainingIgnoreCase(name);
+    HttpStatus status = categoryList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(categoryList, status);
+  }
+
   @PutMapping
   @ResponseStatus(HttpStatus.OK)
   public void update(@RequestBody Category categoryRequest) {
