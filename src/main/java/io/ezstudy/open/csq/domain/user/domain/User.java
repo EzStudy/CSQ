@@ -1,7 +1,6 @@
 package io.ezstudy.open.csq.domain.user.domain;
 
 import io.ezstudy.open.csq.domain.model.BaseTimeEntity;
-import io.ezstudy.open.csq.global.Constants.PROVIDER;
 import io.ezstudy.open.csq.global.Constants.ROLE;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +16,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
-@NoArgsConstructor
 public class User extends BaseTimeEntity {
 
   @Id
@@ -28,35 +27,39 @@ public class User extends BaseTimeEntity {
   @Column(columnDefinition = "VARCHAR(36)", insertable = false, updatable = false, nullable = false)
   private String id;
 
-  @Column(length = 20)
+  @Column(nullable = false, length = 20)
   private String name;
 
   @Email
   @Column(length = 100, unique = true, nullable = false)
   private String email;
 
-  @Column(length = 20)
-  private String gender;
-
-  @Column(length = 20)
-  @Enumerated(value = EnumType.STRING)
-  private PROVIDER provider;
+  @Column
+  private String picture;
 
   @Column(length = 10)
   @Enumerated(value = EnumType.STRING)
   private ROLE role;
 
   @Builder
-  public User(String id, String name, String email, String gender, PROVIDER provider, ROLE role,
+  public User(String name, String email, String picture, ROLE role,
       String createdAt, String updatedAt, String deletedAt) {
-
     super(createdAt, updatedAt, deletedAt);
-    this.id = id;
     this.name = name;
     this.email = email;
-    this.gender = gender;
-    this.provider = provider;
+    this.picture = picture;
     this.role = role;
+  }
+
+  public User update(String name, String picture) {
+    this.name = name;
+    this.picture = picture;
+
+    return this;
+  }
+
+  public String getRoleKey() {
+    return this.role.getKey();
   }
 
   @Override
@@ -65,8 +68,7 @@ public class User extends BaseTimeEntity {
         "id='" + id + '\'' +
         ", name='" + name + '\'' +
         ", email='" + email + '\'' +
-        ", gender='" + gender + '\'' +
-        ", provider=" + provider +
+        ", picture='" + picture + '\'' +
         ", role=" + role +
         ", createdAt='" + createdAt + '\'' +
         ", updatedAt='" + updatedAt + '\'' +
@@ -74,3 +76,5 @@ public class User extends BaseTimeEntity {
         '}';
   }
 }
+
+

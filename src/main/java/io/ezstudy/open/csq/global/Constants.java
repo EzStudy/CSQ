@@ -1,37 +1,19 @@
 package io.ezstudy.open.csq.global;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 public class Constants {
 
-  public enum PROVIDER {
-
-    GOOGLE("PROVIDER_GOOGLE"),
-    KAKAO("PROVIDER_KAKAO");
-
-    private String title;
-
-    PROVIDER(String title) {
-      this.title = title;
-    }
-
-    public String getTitle() {
-      return title;
-    }
-  }
-
+  @Getter
+  @RequiredArgsConstructor
   public enum ROLE {
 
-    ADMIN("ROLE_ADMIN"),
-    USER("ROLE_USER");
+    GUEST("ROLE_GUEST", "손님"),
+    USER("ROLE_USER", "일반 사용자");
 
-    private String title;
-
-    ROLE(String title) {
-      this.title = title;
-    }
-
-    public String getTitle() {
-      return title;
-    }
+    private final String key;
+    private final String title;
   }
 
 }
