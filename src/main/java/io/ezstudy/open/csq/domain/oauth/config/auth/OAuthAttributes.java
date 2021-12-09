@@ -1,7 +1,7 @@
 package io.ezstudy.open.csq.domain.oauth.config.auth;
 
-import io.ezstudy.open.csq.domain.oauth.domain.Role;
-import io.ezstudy.open.csq.domain.oauth.domain.User;
+import io.ezstudy.open.csq.domain.user.domain.Role;
+import io.ezstudy.open.csq.domain.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 

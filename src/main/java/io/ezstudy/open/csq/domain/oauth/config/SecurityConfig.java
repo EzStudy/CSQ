@@ -1,7 +1,7 @@
 package io.ezstudy.open.csq.domain.oauth.config;
 
 import io.ezstudy.open.csq.domain.oauth.config.auth.CustomOAuth2UserService;
-import io.ezstudy.open.csq.domain.oauth.domain.Role;
+import io.ezstudy.open.csq.domain.user.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

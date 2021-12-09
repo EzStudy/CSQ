@@ -1,6 +1,6 @@
 package io.ezstudy.open.csq.domain.oauth.config.auth;
 
-import io.ezstudy.open.csq.domain.oauth.domain.User;
+import io.ezstudy.open.csq.domain.user.domain.User;
 import lombok.Getter;
 
 import java.io.Serializable;

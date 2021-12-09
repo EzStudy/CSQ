@@ -1,7 +1,7 @@
 package io.ezstudy.open.csq.domain.oauth.config.auth;
 
-import io.ezstudy.open.csq.domain.oauth.dao.UserRepository;
-import io.ezstudy.open.csq.domain.oauth.domain.User;
+import io.ezstudy.open.csq.domain.user.dao.UserRepository;
+import io.ezstudy.open.csq.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
