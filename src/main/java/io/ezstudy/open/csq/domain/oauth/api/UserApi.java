@@ -1,21 +1,28 @@
 package io.ezstudy.open.csq.domain.oauth.api;
 
+import io.ezstudy.open.csq.domain.oauth.config.auth.SessionUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@RestController
-@RequestMapping("/api/v1/user")
+@Controller
 @RequiredArgsConstructor
 public class UserApi {
 
     private final HttpSession httpSession;
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/")
+    public String login(Model model) {
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null){
+            model.addAttribute("userName", user.getName());
+        }
+        return "index";
+
     }
 }
