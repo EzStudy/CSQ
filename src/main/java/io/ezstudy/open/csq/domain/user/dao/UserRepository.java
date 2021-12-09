@@ -1,6 +1,6 @@
-package io.ezstudy.open.csq.domain.oauth.dao;
+package io.ezstudy.open.csq.domain.user.dao;
 
-import io.ezstudy.open.csq.domain.oauth.domain.User;
+import io.ezstudy.open.csq.domain.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

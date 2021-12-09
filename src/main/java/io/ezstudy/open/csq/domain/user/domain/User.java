@@ -1,4 +1,4 @@
-package io.ezstudy.open.csq.domain.oauth.domain;
+package io.ezstudy.open.csq.domain.user.domain;
 
 import io.ezstudy.open.csq.domain.model.BaseTimeEntity;
 import lombok.Builder;

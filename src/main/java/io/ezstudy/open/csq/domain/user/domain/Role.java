@@ -1,4 +1,4 @@
-package io.ezstudy.open.csq.domain.oauth.domain;
+package io.ezstudy.open.csq.domain.user.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
