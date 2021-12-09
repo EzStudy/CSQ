@@ -34,7 +34,7 @@ public class Quiz extends BaseTimeEntity {
   private Category categoryId;
 
   @NotNull
-  @Column(length=100)
+  @Column(length=100, unique = true)
   private String title;
 
   @NotNull
