@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ public class CategoryApi {
   private final CategoryService categoryService;
 
   @PostMapping
+  @PreAuthorize("hashRole('ROLE_ADMIN')")
   @ResponseStatus(HttpStatus.CREATED)
   public void create(@RequestBody Category category) {
     categoryService.create(category);
@@ -44,12 +46,14 @@ public class CategoryApi {
   }
 
   @PutMapping
+  @PreAuthorize("hashRole('ROLE_ADMIN')")
   @ResponseStatus(HttpStatus.OK)
   public void update(@RequestBody Category categoryRequest) {
     categoryService.update(categoryRequest);
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hashRole('ROLE_ADMIN')")
   @ResponseStatus(HttpStatus.OK)
   public void delete(@PathVariable("id") String id) {
     categoryService.delete(id);
