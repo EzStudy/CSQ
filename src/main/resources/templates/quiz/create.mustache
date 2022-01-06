@@ -1,0 +1,56 @@
+{{>layout/header}}
+<div>
+  <form>
+    <div class="form-group form-group-before">
+      <label for="exampleFormControlInput1">퀴즈 이름</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="퀴즈 이름">
+    </div>
+    <div class="form-group form-group-before">
+      <label for="exampleFormControlSelect1">카테고리</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>카테고리1</option>
+        <option>카테고리2</option>
+        <option>카테고리3</option>
+        <option>카테고리4</option>
+        <option>카테고리5</option>
+      </select>
+    </div>
+    <div class="form-group form-group-before">
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">객관식</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">주관식</label>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary form-group-before" id="create-quiz-next-btn">다음</button>
+    <!--이 밑 부터 객관(multiple choice -> mc) -->
+    <div class="form-group form-group-mc">
+      <label for="exampleFormControlInput1">문제 내용</label>
+      <textarea class="form-control" id="exampleFormControlInput1" placeholder="문제 내용"></textarea>
+    </div>
+    <div class="form-group form-group-mc">
+      <label for="exampleFormControlInput1">보기 1</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="보기 1">
+    </div>
+    <div class="form-group form-group-mc">
+      <label for="exampleFormControlInput1">보기 2</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="보기 2">
+    </div>
+    <div class="form-group form-group-mc">
+      <label for="exampleFormControlInput1">보기 3</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="보기 3">
+    </div>
+    <div class="form-group form-group-mc">
+      <label for="exampleFormControlInput1">보기 4</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="보기 4">
+    </div>
+    <button type="button" class="btn btn-danger form-group-mc" id="create-quiz-before-btn">이전</button>
+    <button type="button" class="btn btn-primary form-group-mc">생성</button>
+
+  </form>
+
+</div>
+{{>layout/footer}}

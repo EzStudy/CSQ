@@ -6,6 +6,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,19 +16,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/categories")
-@RestController
+@RequestMapping("/categories")
+//@RestController
+@Controller
 public class CategoryApi {
 
   private final CategoryService categoryService;
 
-  @PostMapping
+  @PostMapping("/createCategory")
   @ResponseStatus(HttpStatus.CREATED)
-  public void create(@RequestBody Category category) {
-    categoryService.create(category);
+  public ResponseEntity<Category> create(@RequestBody Category category) {
+    System.out.println(category.getName() + " this is ");
+    Category savedCategory = categoryService.create(category);
+    return new ResponseEntity<>(savedCategory,HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
@@ -55,4 +59,8 @@ public class CategoryApi {
     categoryService.delete(id);
   }
 
+  @GetMapping("/createCategory")
+  public String createCategory(Model model){
+    return "category/create";
+  }
 }

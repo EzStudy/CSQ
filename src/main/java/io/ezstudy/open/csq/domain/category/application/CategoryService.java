@@ -17,8 +17,8 @@ public class CategoryService {
   private final CategoryRepository categoryRepository;
   private final QuizService quizService;
 
-  public void create(Category d) {
-    categoryRepository.save(d);
+  public Category create(Category d) {
+    return categoryRepository.save(d);
   }
 
   public Category findById(String id) {

@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +18,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/quizzes")
-@RestController
+@RequestMapping("/quizes")
+//@RestController
+@Controller
 public class QuizApi {
 
   private final QuizService quizService;
 
-  @PostMapping
+  @GetMapping("/list")
+  public String quizList(){
+    return "quiz/list";
+  }
+
+  @GetMapping("/createQuiz")
+  public String createQuiz(){
+    return "quiz/create";
+  }
+
+  @PostMapping("/createQuiz")
   @ResponseStatus(HttpStatus.CREATED)
   public void create(@RequestBody Quiz d) {
     quizService.create(d);

@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{{>layout/header}}
 <h1>CSQ</h1>
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/api/v1/categories" role="button" class="btn btn-primary">글 등록</a><br/>
+            <a href="/categories" role="button" class="btn btn-primary">글 등록</a><br/>
             {{#userName}}
                 Logged in as: <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
@@ -19,4 +14,8 @@
             {{/userName}}
         </div>
     </div>
+    <div class="col-md-6">
+      <a href="/createCategory" role="button" class="btn btn-primary">카테고리 생성</a>
+    </div>
 </div>
+{{>layout/footer}}
