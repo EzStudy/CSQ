@@ -49,7 +49,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .provider(provider)
-                .role(Role.USER)
+                .role(Role.ADMIN)
                 .build();
     }
 }
