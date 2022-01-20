@@ -11,3 +11,6 @@ spring:
     store-type: jdbc
     jdbc:
       initialize-schema: always
+  profiles:
+    include: oauth
+    active: local
