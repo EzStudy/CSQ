@@ -3,7 +3,6 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/categories" role="button" class="btn btn-primary">글 등록</a><br/>
             {{#userName}}
                 Logged in as: <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
@@ -15,7 +14,9 @@
         </div>
     </div>
     <div class="col-md-6">
-      <a href="/createCategory" role="button" class="btn btn-primary">카테고리 생성</a>
+      <a href="/quizes/list" role="button" class="btn btn-primary">문제 보기</a><br/>
+      <a href="/quizes/createQuiz" role="button" class="btn btn-primary">글 등록</a><br/>
+      <a href="/categories/createCategory" role="button" class="btn btn-primary">카테고리 생성</a>
     </div>
 </div>
 {{>layout/footer}}
