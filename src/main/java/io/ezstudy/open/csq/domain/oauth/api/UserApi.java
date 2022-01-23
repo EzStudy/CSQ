@@ -1,8 +1,10 @@
 package io.ezstudy.open.csq.domain.oauth.api;
 
 import io.ezstudy.open.csq.domain.oauth.config.auth.SessionUser;
-import java.util.Enumeration;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ public class UserApi {
         }
         return "index";
     }
+
 
 
     @GetMapping("/loginPage")

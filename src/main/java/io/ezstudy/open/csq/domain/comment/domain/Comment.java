@@ -2,6 +2,7 @@ package io.ezstudy.open.csq.domain.comment.domain;
 
 import io.ezstudy.open.csq.domain.model.BaseTimeEntity;
 import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
+import io.ezstudy.open.csq.domain.user.domain.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +12,11 @@ import javax.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Comment extends BaseTimeEntity {
@@ -24,12 +27,12 @@ public class Comment extends BaseTimeEntity {
   @Column(columnDefinition = "VARCHAR(36)", insertable = false, updatable = false, nullable = false)
   private String id;
 
-  @Column(length=36)
-  private String userId;
+  @ManyToOne
+  @JoinColumn(name = "userId")
+  private User userId;
 
   @ManyToOne
   @JoinColumn(name = "quizId")
-//  @Column(length=36, nullable = false)
   private Quiz quiz;
 
   private byte[] content;
@@ -38,7 +41,7 @@ public class Comment extends BaseTimeEntity {
   private int recommand;
 
   @Builder
-  public Comment(String id, String userId, Quiz quiz, byte[] content, int recommand,
+  public Comment(String id, User userId, Quiz quiz, byte[] content, int recommand,
       String createdAt, String updatedAt, String deletedAt) {
     super(createdAt, updatedAt, deletedAt);
 

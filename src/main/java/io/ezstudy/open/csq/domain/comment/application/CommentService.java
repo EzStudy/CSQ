@@ -52,4 +52,8 @@ public class CommentService {
     comment.onDestroy();
   }
 
+  public void deleteAllComment(){
+    commentRepository.deleteAll();
+  }
+
 }
