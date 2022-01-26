@@ -17,7 +17,7 @@ public class CategoryService {
   private final CategoryRepository categoryRepository;
   private final QuizService quizService;
 
-  public Category create(Category d) {
+  public Category save(Category d) {
     return categoryRepository.save(d);
   }
 
@@ -39,7 +39,7 @@ public class CategoryService {
     CategoryMapper.INSTANCE.updateFromDto(d, category);
   }
 
-  public void delete(String id) {
+  public void deleteById(String id) {
     // category 를 사용중인 quiz 가 있는지 체크
     if (null != quizService.findAllByCategoryId(id)) {
       throw new UsedException("Category is used in quiz yet");

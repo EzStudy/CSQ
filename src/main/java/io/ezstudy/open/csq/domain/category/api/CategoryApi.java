@@ -2,12 +2,11 @@ package io.ezstudy.open.csq.domain.category.api;
 
 import io.ezstudy.open.csq.domain.category.application.CategoryService;
 import io.ezstudy.open.csq.domain.category.domain.Category;
+import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,52 +14,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
+
+@RestController
 @RequestMapping("/categories")
-//@RestController
-@Controller
+@RequiredArgsConstructor
+@Slf4j
 public class CategoryApi {
 
   private final CategoryService categoryService;
 
-  @PostMapping("/createCategory")
-  @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<Category> create(@RequestBody Category category) {
-    System.out.println(category.getName() + " this is ");
-    Category savedCategory = categoryService.create(category);
-    return new ResponseEntity<>(savedCategory,HttpStatus.OK);
+  @GetMapping
+  public ResponseEntity<List<Category>> findAll() {
+    List<Category> categoryList = categoryService.findAll();
+    return ResponseEntity.ok(categoryList);
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<Category> findById(@PathVariable("id") String id) {
-    Category category = categoryService.findById(id);
-    HttpStatus status = category != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(category, status);
+    Category categoryResponseDto = categoryService.findById(id);
+    return ResponseEntity.ok(categoryResponseDto);
   }
 
-  @GetMapping
-  public ResponseEntity<List<Category>> findAll() {
-    List<Category> categoryList = categoryService.findAll();
-    HttpStatus status = categoryList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(categoryList, status);
+  @PostMapping
+  public ResponseEntity<Category> create(@RequestBody Category createCategoryDto) {
+    log.debug("category: {}", createCategoryDto.toString());
+    Category categoryResponseDto = categoryService.save(createCategoryDto);
+    return ResponseEntity.created(URI.create("/categories")).body(categoryResponseDto);
   }
 
   @PutMapping
-  @ResponseStatus(HttpStatus.OK)
-  public void update(@RequestBody Category categoryRequest) {
-    categoryService.update(categoryRequest);
+  public ResponseEntity<?> update(@RequestBody Category categoryUpdateDto) {
+    categoryService.update(categoryUpdateDto);
+    return ResponseEntity.noContent().build();
   }
 
   @DeleteMapping("/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public void delete(@PathVariable("id") String id) {
-    categoryService.delete(id);
-  }
-
-  @GetMapping("/createCategory")
-  public String createCategory(Model model){
-    return "category/create";
+  public ResponseEntity<?> delete(@PathVariable("id") String id) {
+    categoryService.deleteById(id);
+    return ResponseEntity.noContent().build();
   }
 }
