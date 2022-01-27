@@ -11,4 +11,6 @@ public interface QuizRepository extends JpaRepository<Quiz, String> {
   List<Quiz> findAllByCategoryId(String categoryId);
 
   List<Quiz> findByTitleContainingIgnoreCase(String title);
+
+  List<Quiz> findAllByCategoryName(String categoryName);
 }

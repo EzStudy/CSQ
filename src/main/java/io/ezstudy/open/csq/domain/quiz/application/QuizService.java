@@ -31,6 +31,10 @@ public class QuizService {
     return quizRepository.findAllByCategoryId(categoryId);
   }
 
+  public List<Quiz> findAllByCategoryName(String categoryName) {
+    return quizRepository.findAllByCategoryName(categoryName);
+  }
+
   public List<Quiz> findAll() {
     return quizRepository.findAll();
   }
@@ -42,7 +46,7 @@ public class QuizService {
     QuizMapper.INSTANCE.updateFromDto(d, quiz);
   }
 
-  public void delete(String id) {
+  public void deleteById(String id) {
     Quiz quiz = quizRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
     if (null != quiz.getDeletedAt()) {
