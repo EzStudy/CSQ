@@ -31,9 +31,9 @@ public class QuizService {
     return quizRepository.findAllByCategoryId(categoryId);
   }
 
-  public List<Quiz> findAllByCategoryName(String categoryName) {
-    return quizRepository.findAllByCategoryName(categoryName);
-  }
+//  public List<Quiz> findAllByCategoryName(String categoryName) {
+//    return quizRepository.findAllByCategoryName(categoryName);
+//  }
 
   public List<Quiz> findAll() {
     return quizRepository.findAll();

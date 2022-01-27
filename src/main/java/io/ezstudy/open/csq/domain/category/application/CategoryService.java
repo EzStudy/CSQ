@@ -41,7 +41,7 @@ public class CategoryService {
 
   public void deleteById(String id) {
     // category 를 사용중인 quiz 가 있는지 체크
-    if (null != quizService.findAllByCategoryName(id)) {
+    if (null != quizService.findAllByCategoryId(id)) {
       throw new UsedException("Category is used in quiz yet");
     }
 
