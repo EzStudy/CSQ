@@ -54,10 +54,11 @@ public class QuizApi {
     return new ResponseEntity<>(quiz, status);
   }
 
-  @GetMapping("/categories/{categoryId}")
-  public ResponseEntity<List<Quiz>> getQuizsByCategoryId( // pagination 필요
-      @PathVariable("categoryId") String categoryId) {
-    List<Quiz> quizList = quizService.findAllByCategoryId(categoryId);
+  @Operation(summary = "카테고리 별 퀴즈 목록 조회", description = "해당 카테고리에 해당하는 퀴즈 목록을 조회합니다.")
+  @GetMapping("/categories/{categoryName}")
+  public ResponseEntity<List<Quiz>> getQuizsByCategoryName( // pagination 필요
+      @PathVariable("categoryName") String categoryName) {
+    List<Quiz> quizList = quizService.findAllByCategoryName(categoryName);
     HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
     return new ResponseEntity<>(quizList, status);
   }
