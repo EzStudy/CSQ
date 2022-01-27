@@ -39,11 +39,12 @@ public class QuizApi {
     return "quiz/create";
   }
 
-  @Operation(summary = "퀴즈 생성")
-  @PostMapping()
-  @ResponseStatus(HttpStatus.CREATED)
-  public void createQuiz(@RequestBody Quiz d) {
-    quizService.create(d);
+  @Operation(summary = "퀴즈 목록 조회")
+  @GetMapping
+  public ResponseEntity<List<Quiz>> getQuizs() { // pagination 필요
+    List<Quiz> quizList = quizService.findAll();
+    HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    return new ResponseEntity<>(quizList, status);
   }
 
   @Operation(summary = "단일 퀴즈 조회", description = "퀴즈 아이디에 해당하는 퀴즈를 조회합니다.")
@@ -63,12 +64,11 @@ public class QuizApi {
     return new ResponseEntity<>(quizList, status);
   }
 
-  @Operation(summary = "퀴즈 목록 조회")
-  @GetMapping
-  public ResponseEntity<List<Quiz>> getQuizs() { // pagination 필요
-    List<Quiz> quizList = quizService.findAll();
-    HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-    return new ResponseEntity<>(quizList, status);
+  @Operation(summary = "퀴즈 생성")
+  @PostMapping()
+  @ResponseStatus(HttpStatus.CREATED)
+  public void createQuiz(@RequestBody Quiz d) {
+    quizService.create(d);
   }
 
   @Operation(summary = "퀴즈 업데이트")
