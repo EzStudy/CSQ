@@ -42,7 +42,7 @@ public class QuizService {
     QuizMapper.INSTANCE.updateFromDto(d, quiz);
   }
 
-  public void delete(String id) {
+  public void deleteById(String id) {
     Quiz quiz = quizRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
     if (null != quiz.getDeletedAt()) {
