@@ -38,16 +38,16 @@ public class Quiz extends BaseTimeEntity {
   private String title;
 
   @NotNull
-  private byte[] content;
+  private String content;
 
   @NotNull
-  private byte[] multipleChoice;
+  private String multipleChoice;
 
   @NotNull
-  private byte[] answer;
+  private String answer;
 
   @NotNull
-  private byte[] explanation;
+  private String explanation;
 
   @NotNull
   @Column(length=20, nullable = false)
@@ -56,8 +56,8 @@ public class Quiz extends BaseTimeEntity {
   private int recommend;
 
   @Builder
-  public Quiz(String id, String userId, Category categoryId, String title, byte[] content,
-      byte[] multipleChoice, byte[] answer, byte[] explanation, String type, int recommend,
+  public Quiz(String id, String userId, Category categoryId, String title, String content,
+      String multipleChoice, String answer, String explanation, String type, int recommend,
       String createdAt, String updatedAt, String deletedAt) {
 
     super(createdAt, updatedAt, deletedAt);

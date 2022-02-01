@@ -1,5 +1,6 @@
 package io.ezstudy.open.csq.domain.quiz.application;
 
+import io.ezstudy.open.csq.domain.category.domain.Category;
 import io.ezstudy.open.csq.domain.quiz.dao.QuizMapper;
 import io.ezstudy.open.csq.domain.quiz.dao.QuizRepository;
 import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
@@ -27,7 +28,7 @@ public class QuizService {
     return quizRepository.findByTitleContainingIgnoreCase(title);
   }
 
-  public List<Quiz> findAllByCategoryId(String categoryId) {
+  public List<Quiz> findAllByCategoryId(Category categoryId) {
     return quizRepository.findAllByCategoryId(categoryId);
   }
 

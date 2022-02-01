@@ -1,5 +1,7 @@
 package io.ezstudy.open.csq.domain.quiz.api;
 
+import io.ezstudy.open.csq.domain.category.dao.CategoryRepository;
+import io.ezstudy.open.csq.domain.category.domain.Category;
 import io.ezstudy.open.csq.domain.quiz.application.QuizService;
 import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class QuizApi {
 
   private final QuizService quizService;
+  private final CategoryRepository categoryRepository;
 
   @Operation(summary = "퀴즈 목록 화면")
   @GetMapping("/list")
@@ -59,7 +62,8 @@ public class QuizApi {
   @GetMapping("/categories/{categoryId}")
   public ResponseEntity<List<Quiz>> getQuizsByCategoryId( // pagination 필요
       @PathVariable("categoryId") String categoryId) {
-    List<Quiz> quizList = quizService.findAllByCategoryId(categoryId);
+    Category category = categoryRepository.findById(categoryId).get();
+    List<Quiz> quizList = quizService.findAllByCategoryId(category);
     HttpStatus status = quizList != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
     return new ResponseEntity<>(quizList, status);
   }

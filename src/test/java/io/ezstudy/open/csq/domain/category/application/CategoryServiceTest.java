@@ -25,7 +25,7 @@ class CategoryServiceTest {
                 .name("TestCategory")
                 .build();
 
-        categoryService.save(category);
+        //categoryService.save(category);
 
         List<Category> categories = categoryRepository.findByNameContainingIgnoreCase("test");
 
