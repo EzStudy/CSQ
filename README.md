@@ -38,6 +38,9 @@ CS 문제 사이트
 - 제한 시간 안에 문제 풀기 게임?테스트? (온라인 코딩 테스트처럼 진행...)
   
 
+## 목업 화면
+
+https://docs.google.com/presentation/d/1QdSdRsrY_NT8M9m7XdhIBZwlG6E-bKYVa7HxYvSlrt0/edit?usp=sharing
 
 
 
