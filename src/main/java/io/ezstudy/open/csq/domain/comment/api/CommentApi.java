@@ -3,11 +3,13 @@ package io.ezstudy.open.csq.domain.comment.api;
 import io.ezstudy.open.csq.domain.comment.application.CommentService;
 import io.ezstudy.open.csq.domain.comment.domain.Comment;
 import io.ezstudy.open.csq.domain.comment.dto.CommentDto;
+import io.ezstudy.open.csq.domain.model.ResponseDto;
 import io.ezstudy.open.csq.domain.oauth.config.auth.SessionUser;
 import io.ezstudy.open.csq.domain.quiz.dao.QuizRepository;
 import io.ezstudy.open.csq.domain.quiz.domain.Quiz;
 import io.ezstudy.open.csq.domain.user.dao.UserRepository;
 import io.ezstudy.open.csq.domain.user.domain.User;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
@@ -21,11 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/comments")
+@RequestMapping("/comments")
 @RestController
 public class CommentApi {
 
@@ -33,6 +36,31 @@ public class CommentApi {
   private final UserRepository userRepository;
   private final HttpSession httpSession;
   private final QuizRepository quizRepository;
+
+  @GetMapping("/{id}/recommand")
+  public ResponseEntity<ResponseDto> recommandUp(@PathVariable String id,@RequestParam("recommand") String recommand ){
+    /**
+     * 구현중 recommand = up 일때 추천 증가
+     * 구현중 recommand = down 일때 추천 감소
+     */
+    Comment commentDao = null;
+    if("up".equals(recommand)){
+      commentDao = commentService.recommandUp(id);
+    }else if("down".equals(recommand)){
+
+    }else{
+      //return new ResponseEntity<>()
+    }
+    if(commentDao == null) new Exception("something is wrong. check the logic");
+
+    List<Comment> data = List.of(commentDao);
+    ResponseDto responseDto = ResponseDto.builder()
+                                          .url("http://localhost:8080/comments/" + commentDao.getId())
+                                          .data(Collections.singletonList(data))
+                                          .build();
+    return new ResponseEntity<>(responseDto, HttpStatus.OK) ;
+  }
+
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

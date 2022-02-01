@@ -6,6 +6,7 @@ import io.ezstudy.open.csq.domain.comment.domain.Comment;
 import io.ezstudy.open.csq.global.exception.AlreadyDeletedException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,4 +57,20 @@ public class CommentService {
     commentRepository.deleteAll();
   }
 
+    public Comment recommandUp(String id) {
+      Optional<Comment> comment = commentRepository.findById(id);
+      if(comment.isEmpty()){
+        return null;
+      }
+      int beforeRecommand = comment.get().getRecommand();
+      Comment updateComment = Comment.builder()
+                                    .recommand(beforeRecommand+1)
+                                    .id(comment.get().getId())
+                                    .userId(comment.get().getUserId())
+                                    .content(comment.get().getContent())
+                                    .quiz(comment.get().getQuiz())
+                                    .build();
+      Comment commentDao = commentRepository.save(updateComment);
+      return commentDao;
+    }
 }
