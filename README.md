@@ -1,49 +1,94 @@
 # CSQ(Computer Science Quiz)
 
-CS 문제 사이트
+CS 봇
 
-- 로그인 기능 + SSO (카톡, 구글, 네이버, 페이스북…)
+- CS 관련 문제를 풀 수 있는 챗봇입니다.
 
-- 관리자가 문제 생성
 
-- 게시판과 같은 걸 만들어서 사용자가 문제 요청
+## 기능
 
-- 문제 푸는 공간
+### 사용자 챗봇문제 
 
-  - 주관식 문제 정답은 사용자들이 입력한 정답 중 가장 많은 추천을 받은 정답부터 차례로 view
-  - 추후에 단답형, 객관식도 만들자…
+- 받을 시간 설정 or 문제 받을 
+- 주기 설정
+- 원하는 문제 유형(카테고리) 설정
+- 문의하기 (도움말)
+- 문제 풀기
+- 문제 해설 보기
 
-- 사용자간 follow 기능(follow 한 사람의 답변 확인할 수 있는 기능)
+### 관리자 챗봇
 
-- 게시판  / 댓글 view
-
-  - 추천순
-  - 최신 댓글 순
-  - 생성 날짜 순
-
-- 검색 기능
-
-  - 태그
-  - 제목
-  - 작성자 
-
-- 문제 별 태그 기능
-
-- 사용자/관리자/매니저 각 권한별 페이지 구분
-
-- 배치 기능(클린봇...)
-
-- 사용자 랭킹(금주 1등....)
-
-- 제한 시간 안에 문제 풀기 게임?테스트? (온라인 코딩 테스트처럼 진행...)
+- 카테고리 만들기
+- 문제 만들기
+- 관리자 권한 부여하기
+- 문의 조회
+- 문의 내용에 답변 달기
   
 
-## 목업 화면
-
-https://docs.google.com/presentation/d/1QdSdRsrY_NT8M9m7XdhIBZwlG6E-bKYVa7HxYvSlrt0/edit?usp=sharing
 
 
 
+**Quiz**
 
-### 1차 목표 : 11월 달 안에 운영!!
+- 아이디(String) - uuid
+- 카테고리(String)
+- 문제(String)
+- 객관식 보기1(String)
+- 객관식 보기2(String)
+- 객관식 보기3(String)
+- 객관식 보기4(String)
+- 객관식 보기5(String)
+- 정답(String)
+- 해설(String)
+- 생성 일시 (timestamp)
+- 업데이트 일시 (timestamp)
+
+
+
+
+## 테이블
+
+### Category
+
+- 아이디(String) - uuid
+- 이름 (String)
+- 생성 일시 (timestamp)
+- 업데이트 일시 (timestamp)
+
+
+
+### User
+
+- 아이디 (String) - uuid
+- 이름 (String)
+- 이메일 (String)
+- 자동 문제 출제 여부 선택 (tinyint)
+- 문제 받는 시간 (Integer) 0~23
+- 권한 (사용자, 관리자)
+- 생성 일시 (timestamp)
+- 업데이트 일시 (timestamp)
+
+
+
+### Question
+
+- 아이디(String) – uuid
+- 질문 제목 (String)
+- 질문 내용 (String)
+- 사용자 아이디 (String)
+- 생성 일시 (timestamp)
+- 업데이트 일시 (timestamp)
+
+
+
+### Answer
+
+- 아이디 (String) - uuid
+- 답변 (String)
+- 답변 시간 (Timestamp)
+- 질문 아이디(String) – uuid
+- 생성 일시 (timestamp)
+- 업데이트 일시 (timestamp)
+
+
 
